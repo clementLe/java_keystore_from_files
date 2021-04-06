@@ -7,7 +7,7 @@ This modules is inspired by [java_keystore Ansible module](https://github.com/an
 It has been modify to implement these updates:
 - Original module takes the content of private key and certificate => This module takes paths. It allows to avoid the creation of temp files (with bad permissions)
 - Removing the .p12 file at the end or in case of trouble
-
+- Adding the ability to configure a keystore with a protected private key (private_key_passphrase)
 
 ## Usage
 
