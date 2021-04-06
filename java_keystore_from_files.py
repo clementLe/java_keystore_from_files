@@ -20,7 +20,7 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
 
 DOCUMENTATION = '''
 ---
-module: java_keystore
+module: java_keystore_from_files
 short_description: Create or delete a Java keystore in JKS format.
 description:
      - Create or delete a Java keystore in JKS format for a given certificate.

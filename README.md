@@ -13,7 +13,7 @@ It has been modify to implement these updates:
 
 ```yaml
 ---
-module: java_keystore
+module: java_keystore_from_files
 short_description: Create or delete a Java keystore in JKS format.
 description:
      - Create or delete a Java keystore in JKS format for a given certificate.
