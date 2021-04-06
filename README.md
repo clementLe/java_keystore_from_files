@@ -32,6 +32,11 @@ options:
           - Absolute path of the private key that should be used to create the key store.
           - File must be present on the remote server
         required: true
+    private_key_passphrase:
+        description:
+          - Private key passphrase needed if your private key is protected
+          - This password will be used to protect the key inside the keystore
+        required: false
     password:
         description:
           - Password that should be used to secure the key store.
