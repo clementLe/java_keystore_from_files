@@ -69,12 +69,22 @@ requirements: [openssl, keytool]
 ## Example
 
 ```yaml
-# Create a key store for the given certificate (inline)
-- java_keystore:
+# Create a key store for the given certificate
+- java_keystore_from_files:
     name: example
     certificate_path: /etc/pki/tls/certs/my_server.crt
-    private_key: /etc/pki/tls/private/my_server.key
-    password: changeit
+    private_key_path: /etc/pki/tls/private/my_server.key
+    password: "changeit"
+    dest: /etc/security/keystore.jks
+    mode: "0600"
+
+# Create a key store for the given certificate with a passphrase protected key
+- java_keystore_from_files:
+    name: example
+    certificate_path: /etc/pki/tls/certs/my_server.crt
+    private_key_path: /etc/pki/tls/private/my_server.key
+    private_key_passphrase: "my_key_passphrase"
+    password: "changeit"
     dest: /etc/security/keystore.jks
     mode: "0600"
 ```
