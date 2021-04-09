@@ -186,9 +186,11 @@ def create_jks(module, name, openssl_bin, keytool_bin, keystore_path, password, 
                 os.remove(keystore_p12_path)
 
             passin = ""
+            destkeypass = ""
             # when keypass is provided
             if keypass:
                 passin = "-passin 'pass:%s'" % keypass
+                destkeypass = "-destkeypass '%s'" % keypass
 
             export_p12_cmd = "%s pkcs12 -export -name '%s' -in '%s' -inkey '%s' -out '%s' -passout 'pass:%s' %s" % (
                 openssl_bin, name, certificate_path, private_key_path, keystore_p12_path, password, passin)
@@ -200,13 +202,13 @@ def create_jks(module, name, openssl_bin, keytool_bin, keystore_path, password, 
 
             import_keystore_cmd = "%s -importkeystore " \
                                   "-destkeystore '%s' " \
-                                  "-destkeypass '%s' " \
+                                  "%s " \
                                   "-srckeystore '%s' " \
                                   "-srcstoretype pkcs12 " \
                                   "-alias '%s' " \
                                   "-deststorepass '%s' " \
                                   "-srcstorepass '%s' " \
-                                  "-noprompt" % (keytool_bin, keystore_path, keypass, keystore_p12_path, name, password, password)
+                                  "-noprompt" % (keytool_bin, keystore_path, destkeypass, keystore_p12_path, name, password, password)
             (rc, import_keystore_out, import_keystore_err) = run_commands(module, import_keystore_cmd)
             if rc == 0:
                 update_jks_perm(module, keystore_path)
